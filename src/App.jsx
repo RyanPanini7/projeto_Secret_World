@@ -19,9 +19,29 @@ const stages = [
 function App() {
   const [gameStage, setGameStage] = useState(stages[0].name)
   const [words] = useState(wordsList)
+
+  const [pickedWorld, setPickedWorld] = useState("")
+  const [pickedCategory, setPickedCategory] = useState("")
+  const [letters, setLetters] = useState([])
+
+  const pickedWorldAndPickedCategory = () => {
+    // pick a random category
+    const categories = Object.keys(words)
+    const category = categories[Math.floor(Math.random() * Object.keys(categories).length)] // math.floor para poder arredondar para baixo, pois com random e retornado um numero quebrado.
+
+    console.log(category)
+    // pick a random word
+    const word = words[category][Math.floor(Math.random() * words[category].length)] 
+
+    console.log(word)
+  }
+
 // starts secrets worlds games
   const startGame = () => {
-    setGameStage(stages[1].name)
+    pickedWorldAndPickedCategory();
+    
+    
+    setGameStage(stages[1].name) //ultimo a ser usado.
   }
 
   // process the letter input
